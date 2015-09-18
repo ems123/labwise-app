@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+      <div style="margin-top: 100px; margin-bottom: 30px;" class="col-xs-12">
+          <img class="img-responsive" src="img/ac_logo.png" style="margin-left: auto; margin-right: auto;"/>
+      </div>
+  </div>
+  <div class="page-header" data-ng-hide="isLoggedIn">
+    <h3 class="text-center">WELCOME TO LABWISE CLOUD</h3>
+    <h4 class="text-center"> We will verify your details and comeback to you soon...</h4>
+  </div>
+  <div class="page-header" data-ng-show="isLoggedIn">
+    <h3 class="text-center">WELCOME TO LABWISE CLOUD</h3>
+    <h4 class="text-center"> Service Provider Area</h4>
+  </div>
+<div>
+  <div class="row" data-ng-hide="viewOrders">
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="showViewOrdersForm()">VIEW ORDERS</button>
+      </div>
+    </div>
+  <br></br>
+</div>
+<div>
+    <div class="row" data-ng-hide="viewOrders">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="proceed()">PROCEED TO MAIN SITE</button>
+        </div>
+      </div>
+    <br></br>
+</div>
+<!-- view orders -->
+
+<div class="row col-xs-12" name="view-orders"  id="view-orders" data-ng-show="viewOrders && !showOrderDetailsTrue" >
+  <table class="col-xs-12 table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Service</th>
+        <th>Phone</th>
+        <th>Pincode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="so in sos">
+        <td>{{so.objectId}}</td>
+        <td>{{so.service}}</td>
+        <td>{{so.orderInfo[1].contactInfo.mobile}}</td>
+        <td>{{so.orderInfo[1].contactInfo.pincode}}</td>
+        <td data-ng-click="showOrderDetails($index)"><a>view</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row col-xs-8">
+      <button type="button" class="btn btn-primary btn-block" ng-click="backToMainMenu()">BACK</button>
+  </div>
+  <br></br>
+</div>
+
+<!-- order details -->
+
+<div class="row col-xs-12" name="view-details"  id="view-details" data-ng-show="showOrderDetailsTrue">
+  <table class="col-xs-12 table table-striped">
+    <tbody>
+      <tr>
+        <td>ID:{{sso.objectId}}</td>
+      </tr>
+     <tr>
+       <td>Service:{{sso.service}}</td>
+     </tr>
+    <tr>
+     <td>Mobile:{{sso.orderInfo[1].contactInfo.mobile}}</td>
+    </tr>
+    <tr>
+     <td>PinCode:{{sso.orderInfo[1].contactInfo.pincode}}</td>
+    </tr>
+    <tr ng-if="sso.service === 'PHARMACY'">
+      <td ng-if="sso.orderInfo[0].pharmacy.file_url.length"> Order Info: <img src= "{{sso.orderInfo[0].pharmacy.file_url}}" </td>
+      <td ng-if="sso.orderInfo[0].pharmacy.prescription_text.length">Order Info : {{sso.orderInfo[0].pharmacy.prescription_text}} </td>
+    </tr>
+    <tr ng-if="sso.service === 'LAB'">
+      <td>Order Info: {{sso.orderInfo[0].lab.lab_test}}</br>{{sso.orderInfo[0].lab.date_time}} </td>
+    </tr>
+    <tr>
+        <td data-ng-hide="orderCompleteConfirm" data-ng-click="completeOrder()"><a>Complete</a></td>
+        <td data-ng-show="orderCompleteConfirm" data-ng-click="completeOrderConfirm()"><a>Confirm</a></td>
+        <td data-ng-show="orderCompleteConfirm" data-ng-click="completeOrderCancel()"><a>Cancel</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="row col-xs-8">
+      <button type="button" class="btn btn-primary btn-block" ng-click="backToOrdersMenu()">BACK</button>
+  </div>
+  <br></br>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+      <div style="margin-top: 120px; margin-bottom: 30px;" class="col-xs-12">
+          <img class="img-responsive" src="img/ac_logo.png" style="margin-left: auto; margin-right: auto;"/>
+      </div>
+  </div>
+  <div class="page-header">
+    <h3 class="text-center">LOGIN</h3>
+  </div>
+
+  <div class="row col-xs-12" name="user-login"  id="user-login" style="margin-left: auto; margin-right: auto;">
+    <p><a href="#/register" btn-link > Not a member?Signup <a> </p>
+    <div class="row col-xs-12" name="user-login"  id="user-login">
+      <form name="user-login-frm" id="user-login-frm">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control input-lg" type="text" name="name" ng-model="login" placeholder="Email or Mobile" required/>
+          </div>
+        </div>
+        <div class="form-group" >
+          <div class="input-group">
+            <input class="form-control input-lg" type="password" name="passwd"  ng-model="passwd" placeholder="Password" required/>
+          </div>
+        </div>
+        <div class="row col-xs-6">
+            <button type="button" class="btn btn-primary btn-block has-spinner" ng-click="logon()">Login</button>
+            <span data-ng-show="loggingIn"><img src="img/spinner.png"> Logging<span>
+        </div>
+      </div>
+      </form>
+    </div>
+  <!-- container -->
+  </div>

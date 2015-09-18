@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+      <div style="margin-top: 100px; margin-bottom: 30px;" class="col-xs-12">
+          <img class="img-responsive" src="img/ac_logo.png" style="margin-left: auto; margin-right: auto;"/>
+      </div>
+  </div>
+  <div class="page-header" data-ng-hide="isLoggedIn">
+    <h3 class="text-center">WELCOME TO LABWISE HEALTH CLOUD</h3>
+    <h4 class="text-center">Thanks for signing up with us..</h4>
+  </div>
+  <div>
+    <div class="row" data-ng-show="!quickBook && !getHiBits">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="quickBookForm()">QuickBook</button>
+        </div>
+      </div>
+    <br></br>
+</div>
+<div>
+  <div class="row" data-ng-show="!quickBook &&!getHiBits">
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="showHiBitsForm()">Earn Hi-Bits</button>
+        <p class="text-center">Earn Hi-Bits just by uploading your medical bills </p>
+      </div>
+    </div>
+  <br></br>
+</div>
+
+
+<!-- quick book -->
+<div class="row col-xs-12" name="quick-book"  id="quick-book" data-ng-show="quickBook" style="margin-left: auto; margin-right: auto;">
+  <form name="quick-book-frm" id="quick-book-frm">
+      <div class="form-group">
+        <div class="input-group">
+          <select class="form-control input-lg" name="service_name" ng-model="service_name" ng-change="serviceSelected(service_name)" ng-options="service_name.name for service_name in service_list" required></select>
+        </div>
+      </div>
+      <div class="form-group" data-ng-show="labServiceSelected" >
+        <div class="input-group">
+          <autocomplete attr-input-class="form-control input-lg" type="text" attr-input-name="lab_test" data="labTestList" ng-model="lab_test" attr-placeholder="Enter Test Name" required /<autocomplete>
+        </div>
+      </div>
+      <div class="form-group" data-ng-show="pharmacyServiceSelected" >
+        <div class="input-group">
+          <textarea class="form-control input-lg" placeholder="Enter Drug Name One per line" rows="2" id="prescription_text" name="prescription_text" ng-maxlength="100" ng-model="prescription_text" ></textarea>
+        </div>
+        <div class="input-group">
+          <label> OR upload prescription (only image/pdf) </label>
+          <input type="file" name="prescription_file" onchange="angular.element(this).scope().upload(this)" id="prescription_file" ng-model="prescription_file" />
+        </div>
+
+      </div>
+      <div class="form-group" >
+        <div class="input-group" data-ng-show="!isUpdateUserAddress">
+          <input class="form-control input-lg" type="text" name="pincode" ng-model="pincode" placeholder="Pin Code" required />
+          <p class="text-center" ><a class="btn btn-link" data-ng-click="updateMyAddress()"> Quickly Update My Address</a></p>
+        </div>
+      </div>
+      <div class="row" class="row col-xs-12" name="address-Form"  id="address-Form" data-ng-show="isUpdateUserAddress" >
+        <form name="addressForm" id="addressForm" >
+          <div class="form-group" >
+            <div class="input-group">
+              <input class="form-control input-lg" type="text" name="address" ng-model="address" placeholder="Address" required />
+            </div>
+          </div>
+          <div class="form-group" >
+            <div class="input-group">
+              <input class="form-control input-lg" type="text" name="pincode" ng-model="pincode" placeholder="Pin Code" required />
+            </div>
+          </div>
+          <div class="col-xs-8">
+            <p><a class="btn btn-link" data-ng-click="updateAddress()">Update</a><a class="btn btn-link" data-ng-click="cancelUpdateAddress()">Cancel</a></p>
+          </div>
+        </form>
+      </div>
+      <div class="row col-xs-8">
+        <button type="button" class="btn btn-primary btn-block" ng-click="submitQuickBook()">Submit</button>
+      </div>
+    </form>
+    <br></br>
+  </div>
+
+  <!-- HiBites form -->
+
+  <div class="row col-xs-12" name="hibits"  id="hibits" data-ng-show="getHiBits" style="margin-left: auto; margin-right: auto;">
+    <form name="hibits-frm" id="hibits-frm">
+        <div class="form-group">
+          <div class="input-group">
+            <select class="form-control input-lg" name="service_name" ng-model="service_name" ng-options="service_name.name for service_name in service_list" required></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="amount" class="form-control input-lg" id="amount" name="amount" ng-model="amount"  placeholder="Bill Amount" required/>
+          </div>
+        </div>
+        <div class="form-group" >
+          <div class="input-group">
+            <input type="file" name="bill" onchange="angular.element(this).scope().upload_bill(this)" id="bill" accept="image/jpg, image/JPG,image/JPEG, image/jpegm, application/pdf" ng-model="bill_file" />
+            <p> Upload your bill (only image/pdf)</p>
+          </div>
+        </div>
+        <div class="row col-xs-8">
+          <button type="button" class="btn btn-primary btn-block" ng-click="submitHiBitsForm()">Submit</button>
+        </div>
+      </form>
+      <br></br>
+    </div>
+
+
+
+
+  <!-- tools -->
+  <div>
+    <div class="row" data-ng-show="!quickBook && !getHiBits">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="proceed()">Tools</button>
+        </div>
+    </div>
+    <br></br>
+</div>
+
+
+</div>

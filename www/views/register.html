@@ -1,0 +1,147 @@
+<div class="container">
+  <div class="row">
+      <div style="margin-top: 100px; margin-bottom: 30px;" class="col-xs-12">
+          <img class="img-responsive" src="img/ac_logo.png" style="margin-left: auto; margin-right: auto;"/>
+      </div>
+  </div>
+  <div class="page-header" ng-show="chooseTrue">
+    <h3 class="text-center">I AM A</h3>
+  </div>
+  <div class="page-header" ng-show="providerView">
+    <h3 class="text-center">ABOUT SERVICE</h3>
+  </div>
+  <div class="page-header" ng-show="providerView2 || userView">
+    <h3 class="text-center">CONTACT DETAILS</h3>
+  </div>
+  <div ng-show="chooseTrue">
+
+    <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="providerSelected()">SERVICE PROVIDER</button>
+        </div>
+      </div>
+    <br></br>
+    <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-ng-click="userSelected()">USER</button>
+        </div>
+      </div>
+    <br></br>
+</div>
+
+<!-- provider view -->
+
+  <div class="row col-xs-12" ng-show="providerView || providerView2" name="provider-reg"  id="provider-reg">
+    <p ng-show="providerView" ><a href="#/login" btn-link> Already a member?Login </a></p>
+    <form name="provider-reg-frm" id="provider-reg-frm">
+      <div ng-show="providerView">
+        <div class="form-group" >
+          <div class="input-group">
+            <div class="checkbox">
+              <label><input  type="checkbox"  ng-model="lab"/>LAB</label>
+            </div>
+            <div class="checkbox">
+              <label><input  type="checkbox"  ng-model="pharmacy" />PHARMACY</label>
+            </div>
+            <div class="checkbox">
+              <label><input  type="checkbox"  ng-model="rmp" />RMP</label>
+            </div>
+            <div class="checkbox">
+              <label><input  type="checkbox" ng-model="nurse" />NURSE</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"  ng-model="physio" />PHYSIO</label>
+            </div>
+            <div class="checkbox">
+              <label><input  type="checkbox" ng-model="food" />Hi-FOOD</label>
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="city" ng-model="city"  placeholder="City Name" required/>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="area" ng-model="area" placeholder="Area Name" required/>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="pincode" ng-model="pincode" placeholder="Pin Code" required/>
+        </div>
+      </div>
+    <div class="row col-xs-8">
+      <button type="button" class="btn btn-primary btn-block" ng-click="submitProvideFormView1()">Continue</button>
+    </div>
+    <br></br>
+  </div>
+
+    <div data-ng-show="providerView2">
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="pname" ng-model="pname" placeholder="Registered Name" required/>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required />
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="text" name="mobile" ng-model="mobile" placeholder="Mobile" required />
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="input-group">
+          <input class="form-control input-lg" type="password" name="passwd" ng-model="passwd" placeholder="Create Password" required/>
+        </div>
+      </div>
+      <div class="row col-xs-8">
+        <button type="button" class="btn btn-primary btn-block" ng-click="saveProvider()">Save</button>
+        <span class="spinner" data-ng-show="savingUser"><img src="img/spinner.png"> Saving..<span>
+      </div>
+    </div>
+    </form>
+    <br></br>
+  </div>
+    <!-- user registration form -->
+
+    <div class="row col-xs-12" name="user-reg"  id="user-reg" ng-show="userView" >
+      <p><a href="#/login" btn-link > Already a member?Login <a> </p>
+      <form name="user-reg-frm" id="user-reg-frm">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control input-lg" type="text" name="name"  required ng-model="name" placeholder="Name" />
+          </div>
+          </div>
+          <div class="form-group" >
+            <div class="input-group">
+              <input class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required />
+            </div>
+          </div>
+          <div class="form-group" >
+            <div class="input-group">
+              <input class="form-control input-lg" type="text" name="mobile" ng-model="mobile" placeholder="Mobile" required />
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="input-group">
+              <input class="form-control input-lg" type="password" name="passwd" ng-model="passwd" placeholder="Create Password" required/>
+            </div>
+          </div>
+
+          <div class="row col-xs-8">
+            <button type="button" class="btn btn-primary btn-block" ng-click="saveUser()">Save</button>
+            <span class="spinner" data-ng-show="savingUser"><img src="img/spinner.png"> Saving..<span>
+          </div>
+        </form>
+        <br></br>
+      </div>
+
+
+<!-- container -->
+</div>
